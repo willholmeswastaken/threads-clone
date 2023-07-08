@@ -22,7 +22,7 @@ export default function RootLayout({
         <header className='w-full flex justify-center items-center'>
           <Image width={25} height={25} src='/logo.png' alt='logo' className='mt-4' />
         </header>
-        <main className='bg-brand flex-1 mt-4'>
+        <main className='bg-brand flex-1 mt-4 lg:px-72 xl:px-96'>
           {children}
         </main>
         <BottomNav />

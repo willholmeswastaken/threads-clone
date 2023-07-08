@@ -7,7 +7,7 @@ import Avatar from './icons/avatar'
 
 const BottomNav = () => {
   return (
-    <nav className="w-full flex justify-between items-center p-6 sticky bottom-0 bg-brand lg:px-72 xl:px-96">
+    <nav className="w-full flex justify-between items-center p-6 sticky bottom-0 bg-brand">
       <div>
         <Home />
       </div>
