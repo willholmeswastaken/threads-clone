@@ -4,6 +4,7 @@ import Ellipsis from '../icons/ellipsis'
 import Image from 'next/image'
 import Verified from '../icons/verified'
 import dayjs from 'dayjs'
+import ReplyAvatars from './reply-avatars'
 
 type ThreadProps = {
     username: string;
@@ -32,7 +33,7 @@ const Thread = ({
     likes,
     replies,
     isLiked,
-    reactionAvatarUrls
+    reactionAvatarUrls = []
 }: ThreadProps) => {
     const timeSinceCreation = useMemo(() => {
         const date = dayjs(createdAt);
@@ -67,8 +68,8 @@ const Thread = ({
         <div className="flex flex-col w-full p-4 border-b border-zinc-900">
             <div className="flex flex-row gap-x-4">
                 <div className='flex flex-col'>
-                    <Image width={30} height={30} src={avatarUrl} alt="me" className='rounded-full mt-1' />
-                    <div className="h-full bg-zinc-500 w-[1.5px] ml-[14px] mt-2"></div>
+                    <Image width={30} height={30} src={avatarUrl} alt="me" className='rounded-full mt-1 border border-zinc-600' />
+                    {reactionAvatarUrls.length > 0 && <div className="h-full bg-zinc-500 w-[1.5px] ml-[14px] mt-2"></div>}
                 </div>
                 <div className="flex flex-col gap-y-1 flex-1">
                     <div className="flex flex-row gap-x-2">
@@ -81,7 +82,7 @@ const Thread = ({
                             )
                         }
                     </div>
-                    <p>{content}</p>
+                    <p className='text-sm'>{content}</p>
                     <ReactionBar isLiked={isLiked ?? false} />
                 </div>
                 <div className="flex items-start gap-x-2 text-sm">
@@ -92,17 +93,9 @@ const Thread = ({
                 </div>
             </div>
 
-            <div className="flex flex-row gap-x-2 text-zinc-600 items-center text-sm mt-1">
-                <div className='mr-1'>
-                    <div className="flex flex-col items-center">
-                        <div className="flex flex-row">
-                            <Image width={15} height={15} src={avatarUrl} alt="me" className='rounded-full mr-1 border border-zinc-600' />
-                            <div className="mt-[-6px]">
-                                <Image width={18} height={18} src={avatarUrl} alt="me" className='rounded-full border border-zinc-600' />
-                            </div>
-                        </div>
-                        <Image width={13} height={13} src={avatarUrl} alt="me" className='rounded-full border border-zinc-600' />
-                    </div>
+            <div className="flex flex-row gap-x-2 text-zinc-600 items-center text-sm mt-2">
+                <div className={`${reactionAvatarUrls.length === 0 ? 'mr-[2.3rem]' : ''} ${reactionAvatarUrls.length === 1 ? 'mr-[0.65rem]' : ''}`}>
+                    <ReplyAvatars avatars={reactionAvatarUrls} />
                 </div>
                 {
                     replies > 0 && (

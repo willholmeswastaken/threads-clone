@@ -16,6 +16,7 @@ export default function Home() {
                         createdAt={dayjs().toISOString()}
                         likes={2}
                         replies={2}
+                        reactionAvatarUrls={['/me.png', '/me.png', '/me.png']}
                     />
                 ))
             }
