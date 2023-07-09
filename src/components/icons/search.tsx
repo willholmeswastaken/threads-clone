@@ -1,3 +1,4 @@
+import { IconProps } from '@/types/icon-props'
 import React from 'react'
 
 const Search = () => {

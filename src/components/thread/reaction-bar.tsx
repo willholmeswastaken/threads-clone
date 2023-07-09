@@ -4,12 +4,16 @@ import SpeechBubble from '../icons/speech-bubble'
 import ReThread from '../icons/re-thread'
 import Send from '../icons/send'
 
-const ReactionBar = () => {
+type ReactionBarProps = {
+    isLiked: boolean;
+};
+
+const ReactionBar = ({ isLiked }: ReactionBarProps) => {
     return (
-        <div className="flex flex-row gap-x-4 mt-1">
-            <div>
-                <Heart />
-            </div>
+        <div className="flex flex-row gap-x-4 mt-2">
+            <button type="button" className={isLiked ? 'text-red-500' : ''}>
+                <Heart filled={isLiked} />
+            </button>
             <div>
                 <SpeechBubble />
             </div>
