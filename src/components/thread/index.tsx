@@ -17,6 +17,12 @@ type ThreadProps = {
     reactionAvatarUrls?: string[];
 }
 
+// TODO:
+// - Add ellipsis menu
+// - Hookup reaction bar
+// - Trailing line from avatar to associated reaction avatars
+
+
 const Thread = ({
     username,
     avatarUrl,
@@ -60,8 +66,9 @@ const Thread = ({
     return (
         <div className="flex flex-col w-full p-4 border-b border-zinc-900">
             <div className="flex flex-row gap-x-4">
-                <div>
+                <div className='flex flex-col'>
                     <Image width={30} height={30} src={avatarUrl} alt="me" className='rounded-full mt-1' />
+                    <div className="h-full bg-zinc-500 w-[1.5px] ml-[14px] mt-2"></div>
                 </div>
                 <div className="flex flex-col gap-y-1 flex-1">
                     <div className="flex flex-row gap-x-2">
@@ -85,9 +92,17 @@ const Thread = ({
                 </div>
             </div>
 
-            <div className="flex flex-row gap-x-2 text-zinc-600 items-center text-sm mt-3">
-                <div className='mr-6'>
-                    <Image width={15} height={15} src={avatarUrl} alt="me" className='rounded-full mt-1' />
+            <div className="flex flex-row gap-x-2 text-zinc-600 items-center text-sm mt-1">
+                <div className='mr-4'>
+                    <div className="flex flex-col items-center">
+                        <div className="flex flex-row">
+                            <Image width={15} height={15} src={avatarUrl} alt="me" className='rounded-full mr-1 border border-zinc-600' />
+                            <div className="mt-[-6px]">
+                                <Image width={18} height={18} src={avatarUrl} alt="me" className='rounded-full border border-zinc-600' />
+                            </div>
+                        </div>
+                        <Image width={13} height={13} src={avatarUrl} alt="me" className='rounded-full border border-zinc-600' />
+                    </div>
                 </div>
                 {
                     replies > 0 && (
