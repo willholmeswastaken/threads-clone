@@ -58,29 +58,49 @@ const Thread = ({
         return `${diffInSeconds}s`;
     }, [createdAt]);
     return (
-        <div className="flex flex-row gap-x-4 w-full px-4 border-b border-zinc-900 py-4">
-            <div>
-                <Image width={30} height={30} src={avatarUrl} alt="me" className='rounded-full mt-1' />
-            </div>
-            <div className="flex flex-col gap-y-1 flex-1">
-                <div className="flex flex-row gap-x-2">
-                    <span className="bold">{username}</span>
-                    {
-                        isVerified && (
-                            <span className="text-blue-400 mt-1">
-                                <Verified />
-                            </span>
-                        )
-                    }
+        <div className="flex flex-col w-full p-4 border-b border-zinc-900">
+            <div className="flex flex-row gap-x-4">
+                <div>
+                    <Image width={30} height={30} src={avatarUrl} alt="me" className='rounded-full mt-1' />
                 </div>
-                <p>{content}</p>
-                <ReactionBar isLiked={isLiked ?? false} />
+                <div className="flex flex-col gap-y-1 flex-1">
+                    <div className="flex flex-row gap-x-2">
+                        <span className="bold">{username}</span>
+                        {
+                            isVerified && (
+                                <span className="text-blue-400 mt-1">
+                                    <Verified />
+                                </span>
+                            )
+                        }
+                    </div>
+                    <p>{content}</p>
+                    <ReactionBar isLiked={isLiked ?? false} />
+                </div>
+                <div className="flex items-start gap-x-2 text-sm">
+                    <span className='text-zinc-600'>{timeSinceCreation}</span>
+                    <span className="mt-[-2px]">
+                        <Ellipsis />
+                    </span>
+                </div>
             </div>
-            <div className="flex items-start gap-x-2 text-sm">
-                <span className='text-zinc-600'>{timeSinceCreation}</span>
-                <span className="mt-[-2px]">
-                    <Ellipsis />
-                </span>
+
+            <div className="flex flex-row gap-x-2 text-zinc-600 items-center text-sm mt-3">
+                <div className='mr-6'>
+                    <Image width={15} height={15} src={avatarUrl} alt="me" className='rounded-full mt-1' />
+                </div>
+                {
+                    replies > 0 && (
+                        <span>{replies} repl{replies > 1 ? 'ies' : 'y'}</span>
+                    )
+                }
+                {likes > 0 && replies > 0 && <span className='text-xs'>•</span>}
+                {
+                    likes > 0 && (
+                        <span>{likes} like{likes > 1 ? 's' : ''}</span>
+                    )
+                }
+
             </div>
         </div>
     )
