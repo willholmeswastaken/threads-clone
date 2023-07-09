@@ -93,7 +93,7 @@ const Thread = ({
             </div>
 
             <div className="flex flex-row gap-x-2 text-zinc-600 items-center text-sm mt-1">
-                <div className='mr-4'>
+                <div className='mr-1'>
                     <div className="flex flex-col items-center">
                         <div className="flex flex-row">
                             <Image width={15} height={15} src={avatarUrl} alt="me" className='rounded-full mr-1 border border-zinc-600' />
